@@ -51,7 +51,6 @@ pipeline {
             steps
                 kubernetesDeploy(kubeconfigId: "kubernetes", configs: "train-schedule-kube.yml"                   
                   )
-        stage ('Deploy to k8s')
             steps {
                 sh 'sudo ssh ahmed@192.168.254.130 "cd /root/drupal/drupal-on-kubernetes-sample/kubernetes && sudo kubectl apply -f local-volumes.yaml && sudo kubectl apply -f drupal.yaml" '                
             
