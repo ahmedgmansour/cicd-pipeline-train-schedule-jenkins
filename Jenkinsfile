@@ -32,11 +32,12 @@ pipeline {
                 branch 'master'
             }
             steps {
-//                 script {
+                script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-//                     }
+                        sh """docker push ${DOCKER_IMAGE_NAME} """
+//                         app.push("${env.BUILD_NUMBER}")
+//                         app.push("latest")
+                    }
                 }
             }
         }
