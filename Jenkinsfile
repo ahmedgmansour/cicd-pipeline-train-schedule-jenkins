@@ -44,16 +44,17 @@ pipeline {
 //                 }
 //             }
 //         }
-        stage('DeployToProduction') {
+        stage('Configure k8s') {
             when {
                 branch 'master'
             }
             steps {
                 kubernetesDeploy(kubeconfigId: "kubernetes", configs: "train-schedule-kube.yml"                   
                   )
+        stage('DeployToK8s') {       
             steps {
                 sh 'sudo ssh ahmed@192.168.254.130 "cd /root/drupal/drupal-on-kubernetes-sample/kubernetes && sudo kubectl apply -f local-volumes.yaml && sudo kubectl apply -f drupal.yaml"'                
-            
+                 }           
               }
             }
         }
