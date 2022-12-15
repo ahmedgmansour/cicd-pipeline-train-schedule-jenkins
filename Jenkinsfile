@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
-                        sh """sudo docker push ${DOCKER_IMAGE_NAME} """
+                        sh """docker push ${DOCKER_IMAGE_NAME}:latest """
 //                         dockerImage.push()
 //                         app.push("${env.BUILD_NUMBER}")
 //                         app.push("latest")
