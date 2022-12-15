@@ -19,7 +19,8 @@ pipeline {
             }
             steps {
                 script {
-                   sh  'app = docker.build(DOCKER_IMAGE_NAME)'
+//                    sh  'app = docker.build(DOCKER_IMAGE_NAME)'
+                    sh """docker build ${DOCKER_IMAGE_NAME}"""
 //                     app.inside {
 //                         sh 'echo Hello, World!'
 //                     }
