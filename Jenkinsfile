@@ -4,6 +4,7 @@ pipeline {
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "ahmedgmansour/train-schedule"
+        dockerImage= ""
     }
     stages {
 //         stage('Build') {
@@ -35,6 +36,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
                         sh """docker push ${DOCKER_IMAGE_NAME} """
+                        dockerImage.push()
 //                         app.push("${env.BUILD_NUMBER}")
 //                         app.push("latest")
                     }
