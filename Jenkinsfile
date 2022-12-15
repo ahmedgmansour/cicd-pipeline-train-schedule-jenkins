@@ -49,8 +49,8 @@ pipeline {
                 branch 'master'
             }
             steps {
-                kubernetesDeploy(kubeconfigId: "kubernetes", configs: "train-schedule-kube.yml"                   
-                  )
+                kubernetesDeploy(kubeconfigId: "kubernetes", configs: "train-schedule-kube.yml")
+                
         stage('DeployToK8s') {  
             when {
                 branch 'master'
