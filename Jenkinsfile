@@ -3,7 +3,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "ahmedgmansour/train-schedule"
+        DOCKER_IMAGE_NAME = "ahmedgmansour/drupal"
         dockerImage= ""
     }
     stages {
@@ -20,30 +20,30 @@ pipeline {
             }
             steps {
                 script {
-//                    sh  'app = docker.build(DOCKER_IMAGE_NAME)'
-                    sh """docker build -t ${DOCKER_IMAGE_NAME} ."""
+                   app = docker.build(DOCKER_IMAGE_NAME)
+//                     sh """docker build -t ${DOCKER_IMAGE_NAME} ."""
 //                     app.inside {
 //                         sh 'echo Hello, World!'
 //                     }
                 }
             }
         }
-//         stage('Push Docker Image') {
-//             when {
-//                 branch 'master'
-//             }
-//             steps {
-//                 script {
-//                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
-//                         sh """docker push ${DOCKER_IMAGE_NAME} """
+        stage('Push Docker Image') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+                        sh """docker push ${DOCKER_IMAGE_NAME} """
 
-// //                         dockerImage.push()
-// //                         app.push("${env.BUILD_NUMBER}")
-// //                         app.push("latest")
-//                     }
-//                 }
-//             }
-//         }
+//                         dockerImage.push()
+//                         app.push("${env.BUILD_NUMBER}")
+//                         app.push("latest")
+                    }
+                }
+            }
+        }
         stage('Configure k8s') {
             when {
                 branch 'master'
