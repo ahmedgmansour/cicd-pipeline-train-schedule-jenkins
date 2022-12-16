@@ -7,13 +7,6 @@ pipeline {
         dockerImage= ""
     }
     stages {
-//         stage('Build') {
-//             steps {
-//                 echo 'Running build automation'
-//                 sh 'sudo ./gradle build --no-daemon'
-//                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-//             }
-//         }
         stage('Build Docker Image') {
             when {
                 branch 'master'
@@ -21,7 +14,6 @@ pipeline {
             steps {
                 script {
                    app = docker.build(DOCKER_IMAGE_NAME)
-//                     sh """docker build -t ${DOCKER_IMAGE_NAME} ."""
 //                     app.inside {
 //                         sh 'echo Hello, World!'
 //                     }
@@ -36,8 +28,6 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
 //                         sh """docker push ${DOCKER_IMAGE_NAME} """
-
-//                         dockerImage.push()
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
