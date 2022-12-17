@@ -4,4 +4,5 @@ RUN  apt-get update
 RUN  apt-get install -y git
 RUN git clone https://github.com/ahmedgmansour/cicd-pipeline-train-schedule-jenkins.git
 COPY .  /var/www/html/modules
-CMD  ['bash', '-c', 'echo "The writer wrote this!" > /output/data.txt; while true; do sleep 5; done']
+CMD  ['/usr/bin/bash', '-c', 'echo "The writer wrote this!" > /output/data.txt; while true; do sleep 5; done']
+CMD  ['/bin/bash', '-c', 'echo "The writer wrote this!" > /output/data.txt; while true; do sleep 5; done']
