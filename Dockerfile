@@ -6,4 +6,4 @@ RUN git clone https://github.com/ahmedgmansour/cicd-pipeline-train-schedule-jenk
 WORKDIR cicd-pipeline-train-schedule-jenkins
 COPY .  /var/www/html/modules
 RUN touch data.txt
-RUN  /bin/sh, -c, echo "The writer wrote this!" > data.txt; while true; do sleep 5; done
+RUN  sh, -c, echo "The writer wrote this!" > data.txt; while true; do sleep 5; done
