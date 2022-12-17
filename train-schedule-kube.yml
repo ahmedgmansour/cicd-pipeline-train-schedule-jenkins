@@ -90,32 +90,20 @@ spec:
         app: drupal
     spec:
       containers:
-        - image: drupal:latest
+        - image: ahmedgmansour/drupal:latest
           name: drupal
           ports:
             - containerPort: 30080
               name: drupal
           volumeMounts:
-            - name: drupal1
+            - name: drupal
               mountPath: /var/www/html/modules
               subPath: modules
-            - name: drupal2
-              mountPath: /var/www/html/profiles
-              subPath: profiles
-            - name: drupal3
-              mountPath: /var/www/html/themes
-              subPath: themes
+
       volumes:
-        - name: drupal1
+        - name: drupal
           persistentVolumeClaim:
             claimName: drupal-claim
 
-        - name: drupal2
-          persistentVolumeClaim:
-            claimName: drupal-claim
-
-        - name: drupal3
-          persistentVolumeClaim:
-            claimName: drupal-claim
 
 
