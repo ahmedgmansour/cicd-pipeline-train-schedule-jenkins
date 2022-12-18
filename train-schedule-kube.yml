@@ -1,3 +1,4 @@
+
 ---
 apiVersion: v1
 kind: Service
@@ -44,16 +45,29 @@ spec:
         app: drupal
     spec:
       containers:
-        - image: ahmedgmansour/drupal:latest
+        - image: drupal:latest
           name: drupal
           ports:
             - containerPort: 30080
               name: drupal
           volumeMounts:
-            - name: drupal1
+            - name: drupal
               mountPath: /var/www/html/modules
               subPath: modules
+        - image: ahmedgmansour/drupal:latest
+          name: sidecar
+          ports:
+            - containerPort: 30081
+              name: sidecar
+          volumeMounts:
+            - name: drupal
+              mountPath: /var/www/html/modules
+              subPath: modules
+
+
       volumes:
-        - name: drupal1
-          persistentVolumeClaim:
-            claimName: drupal-claim
+        #- name: drupal1
+        # persistentVolumeClaim:
+        #    claimName: drupal-claim
+        - name: drupal
+          emptyDir: {}
