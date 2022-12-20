@@ -7,3 +7,4 @@ RUN  apt-get install -y git
 COPY volume.yml  /var/www/html/modules
 RUN touch data.txt
 CMD  sh, -c, echo "The writer wrote this!" > data.txt; while true; do sleep 5; done
+ENTRYPOINT ["/var/www/html/modules/"]
