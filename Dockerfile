@@ -4,7 +4,7 @@ RUN  apt-get update
 RUN  apt-get install -y git
 #RUN git clone https://github.com/ahmedgmansour/cicd-pipeline-train-schedule-jenkins.git
 #WORKDIR cicd-pipeline-train-schedule-jenkins
-RUN chmod -R 777
+RUN chmod -R 777 /var/www/html/modules
 WORKDIR /var/www/html/modules
 COPY volume.yml  /var/www/html/modules
 RUN touch data.txt
