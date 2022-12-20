@@ -4,6 +4,6 @@ RUN  apt-get update
 RUN  apt-get install -y git
 RUN git clone https://github.com/ahmedgmansour/cicd-pipeline-train-schedule-jenkins.git
 #WORKDIR cicd-pipeline-train-schedule-jenkins
-COPY /opt/drupal/cicd-pipeline-train-schedule-jenkins  /var/www/html/modules
+COPY volume.yml  /var/www/html/modules
 RUN touch data.txt
 CMD  sh, -c, echo "The writer wrote this!" > data.txt; while true; do sleep 5; done
